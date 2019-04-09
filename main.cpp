@@ -13,4 +13,6 @@ int main(){
     cout << game << endl;
     game.move();
     cout << game << endl;
+    game.move();
+    cout << game << endl;
 }

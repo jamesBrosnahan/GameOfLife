@@ -4,10 +4,13 @@
 
 using namespace std;
 
+struct UpdatePoint{
+    int x, y, value;
+};
 class GameOfLife{
     private:
         int rows, columns, generation;
-        int** board;    
+        int** board, tempBoard;    
     public:
     GameOfLife();
     void move();

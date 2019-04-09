@@ -19,44 +19,43 @@ void GameOfLife::move(){
     for(int i = 0; i < this->rows; i++){
         tempBoard[i] = (int*)malloc(this->columns*sizeof(int*));
     }
+    
     int value;
     for(int r = 0; r < this->rows; r++){
         for(int c = 0; c < this->columns; c++){
             value = this->board[r][c];
-            if((r != 0 || r != this->rows-1) && (c != 0 || c != this->columns-1)){
-                for(int i = r - 1; i <= r + 1; i++){
-                    for(int j = 0; j <= j+1; j++){
-                        sum += this->board[i][j];
+            sum = 0;
+            for(int i = r - 1; i <= r + 1; i++){
+                for(int j = c - 1; j <= c + 1; j++){
+                    if(i >= 0 && i < this->rows && j >= 0 && j < this->columns){
+                        sum += this->board[i][j]; 
                     }
                 }
             }
-        switch(sum){
-            case 0:
-            case 1:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-                //1. Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
-                //2. Any live cell with more than three live neighbours dies, as if by overcrowding.
-                tempBoard[r][c] = 0;
-                break;
-            case 2:
-                //3. Any live cell with two or three live neighbours lives on to the next generation.
-                break;
-            case 3:
-                //4. Any dead cell with exactly three live neighbours becomes a live cell.
-                tempBoard[r][c] = 1;
-                break;
-        }
-            if(value == 1){
-                    
-            }else if(value == 0){
-                    
+            switch(sum){
+                case 0:
+                case 1:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    //1. Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
+                    //2. Any live cell with more than three live neighbours dies, as if by overcrowding.
+                    tempBoard[r][c] = 0;
+                    break;
+                case 2:
+                    //3. Any live cell with two or three live neighbours lives on to the next generation.
+                    break;
+                case 3:
+                    //4. Any dead cell with exactly three live neighbours becomes a live cell.
+                    tempBoard[r][c] = 1;
+                    break;
             }
         }
     }
+    this->board = tempBoard;
+    this->generation++;
 }
 void GameOfLife::allocBoard(){
     if(this->board){
