@@ -10,7 +10,9 @@ struct UpdatePoint{
 class GameOfLife{
     private:
         int rows, columns, generation;
-        int** board, tempBoard;    
+        int** board, tempBoard;
+        bool aliveordead(int row, int column);
+        int neighbors(int r, int c);
     public:
     GameOfLife();
     void move();
@@ -34,7 +36,7 @@ class GameOfLife{
         }
         return output;
     }
-    friend istream &operator>>( istream  &input, GameOfLife &g ) {
+    friend istream &operator>>(istream  &input, GameOfLife &g ) {
         string temp;
         int rowCount = 0;
         regex generation("^Generation \\d+:$");

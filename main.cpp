@@ -10,9 +10,8 @@ int main(){
     if (input.is_open()){
         input >> game;
     }
-    cout << game << endl;
-    game.move();
-    cout << game << endl;
-    game.move();
-    cout << game << endl;
+    for(int i = 1;i<=3;i++){
+        cout << game << endl;
+        game.move();
+    }
 }
