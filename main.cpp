@@ -27,5 +27,4 @@ int main(int argc, char*argv[]){
     }catch(const ifstream::failure& e){
       cerr << "File io error";
     }
-    
 }
